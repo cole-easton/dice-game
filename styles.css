@@ -10,7 +10,7 @@ body {
     font-style: normal;
 }
 
-.jar {
+.die {
     height: 100px;
     width: 100px;
     border-radius: 8px;
@@ -18,7 +18,12 @@ body {
     background-color: #fff;
 }
 
-#jar-container {
+.die:hover {
+    cursor: pointer;
+    transform: scale(105%);
+}
+
+#die-container {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -104,4 +109,8 @@ button:active {
 .type-4 {
     background-color: #86f;
     border-color: #50f;
+}
+
+.locked {
+    border-color: red;
 }

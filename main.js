@@ -1,6 +1,6 @@
 const indices = new Array(5).fill(0);
 const locks = new Array(5).fill(false);
-const dice = Array.from(document.getElementById("jar-container").children);
+const dice = Array.from(document.getElementById("die-container").children);
 console.log(dice);
 const rollButton = document.getElementById("roll");
 
@@ -45,4 +45,10 @@ rollButton.onclick = _ => {
     displayRoll(getCurrentRoll());
 }
 
+for (let i = 0; i < 5; i++) {
+    dice[i].onclick = e => {
+        e.currentTarget.classList.toggle("locked");
+        locks[i] = !locks[i];
+    }
+}
 
