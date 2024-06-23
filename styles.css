@@ -10,6 +10,7 @@ body {
     font-style: normal;
 }
 
+
 .die {
     height: 100px;
     width: 100px;
@@ -114,3 +115,35 @@ button:active {
 .locked {
     border-color: red;
 }
+
+#scorecard {
+    display: grid;
+    column-gap: 8px;
+    row-gap: 8px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 62px 62px 62px;
+    width:80%;
+    height: fit-content;
+    margin: 1em auto;
+}
+
+.scorecard-category {
+    box-sizing: border-box;
+    display: flex;
+    border: 6px solid black;
+    border-radius: 8px;
+}
+
+.scorebox {
+    width: 50px;
+    background-color: white;
+    border-radius: 0 2px 2px 0;
+}
+
+.scorecard-label {
+    flex-grow: 1;
+    background-color: #ddd;
+    box-shadow: inset 0 0 8px #444;
+}
+
+
