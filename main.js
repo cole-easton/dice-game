@@ -1,6 +1,7 @@
 const indices = new Array(5).fill(0);
 const locks = new Array(5).fill(false);
 const dice = Array.from(document.getElementById("die-container").children);
+const scoreBoxes = Array.from(document.querySelectorAll(".scorebox"));
 console.log(dice);
 const rollButton = document.getElementById("roll");
 
@@ -22,9 +23,56 @@ const rollDice = _ => {
         }
     }
 }
+
+const countDice = roll => {
+    let total = 0;
+    for (let i = 0; i < 5; i++) {
+        switch (roll[i]) {
+            case 1: case 2:
+                total += 2;
+                break;
+            case 3:
+                total += 4;
+                break;
+            case 4:
+                total += 7;
+        }
+    }
+    return total;
+}
+
+const maxOfKind = roll => {
+    const totals = new Array(5).fill(0);
+    roll.forEach(n => totals[n]++);
+    return Math.max(...totals);
+}
+
+const hasAllColors = roll => {
+    const hasColor = new Array(5).fill(false);
+    roll.forEach(n => hasColor[n] = true);
+    hasColor[0] = true;
+    return hasColor.reduce((a, c) => a && c, true);
+}
+
+const getScores = roll => [roll.reduce((a, c) => a + (c === 1 ? 2 : 0), 0),
+roll.reduce((a, c) => a + (c === 2 ? 2 : 0), 0),
+roll.reduce((a, c) => a + (c === 3 ? 4 : 0), 0),
+roll.reduce((a, c) => a + (c === 4 ? 7 : 0), 0),
+maxOfKind(roll) >= 3 ? countDice(roll) : 0,
+maxOfKind(roll) >= 4 ? countDice(roll) : 0,
+maxOfKind(roll) === 5 ? countDice(roll) : 0,
+hasAllColors(roll) ? countDice(roll) : 0, countDice(roll)];
+
 const displayRoll = (roll) => {
     dice.forEach((die, i) => {
         die.innerHTML = `<div class="berry type-${roll[i]}"></div>`
+    });
+}
+
+const displayScores = (roll) => {
+    const scores = getScores(roll);
+    scoreBoxes.forEach((box, i) => {
+        box.textContent = scores[i];
     });
 }
 
@@ -34,15 +82,11 @@ for (let i = 0; i < 27; i++) {
 }
 
 
-let roll = getCurrentRoll();
-console.log(roll);
-rollDice();
-roll = getCurrentRoll();
-console.log(roll);
-
 rollButton.onclick = _ => {
     rollDice();
-    displayRoll(getCurrentRoll());
+    const roll = getCurrentRoll();
+    displayRoll(roll);
+    displayScores(roll);
 }
 
 for (let i = 0; i < 5; i++) {
