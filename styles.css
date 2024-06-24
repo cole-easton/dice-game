@@ -37,6 +37,11 @@ body {
     background-color: #ddd;
 }
 
+
+.disabled {
+    pointer-events: none;
+}
+
 button {
     color: white;
     background-color: #e02;
@@ -50,6 +55,7 @@ button {
     font-weight: bold;
     font-style: normal;
     font-size: 1.7em;
+    user-select: none;
     transition: 144ms;
 }
 
@@ -64,6 +70,10 @@ button:hover {
 button:active {
     transform: scale(95%);
     transition: 144ms;
+}
+
+button.disabled {
+    background-color: #444;
 }
 
 #roll {
@@ -136,6 +146,7 @@ button:active {
     line-height: 50px;
     text-align: center;
     font-size: large;
+    user-select: none;
 }
 
 .scorebox {

@@ -1,10 +1,15 @@
 let total = 0;
 const indices = new Array(5).fill(0);
 const locks = new Array(5).fill(false);
+const dieContainer = document.getElementById("die-container");
 const dice = Array.from(document.getElementById("die-container").children);
 const scoreBoxes = Array.from(document.querySelectorAll(".scorebox"));
+const scorecard = document.getElementById("scorecard");
+const rollsLeftBox = document.getElementById("rolls-left");
 console.log(dice);
 const rollButton = document.getElementById("roll");
+let turnRolls = 3;
+let scoringAllowed = false;
 
 const getRow = _ => (f => new Array(5).fill().map(_ => f()))(_ => {
     switch (Math.floor(10 * Math.random())) {
@@ -23,6 +28,13 @@ const rollDice = _ => {
             indices[i]++;
         }
     }
+    turnRolls--;
+    rollsLeftBox.textContent = turnRolls;
+    if (!turnRolls) {
+        rollButton.classList.add("disabled");
+    }
+    scorecard.classList.remove("disabled");
+    dieContainer.classList.remove("disabled");
 }
 
 const countDice = roll => {
@@ -99,12 +111,17 @@ for (let i = 0; i < 5; i++) {
     }
 }
 
-document.getElementById("scorecard").onclick = e => {
-    if (e.target.classList.contains("scorebox")) {
+scorecard.onclick = e => {
+    if (e.target.classList.contains("scorebox") && !e.target.classList.contains("selected")) {
         e.target.classList.add("selected");
         total += parseInt(e.target.textContent);
         dice.forEach(die=>die.classList.remove("locked"));
         locks.fill(false);
+        turnRolls = 3;
+        rollsLeftBox.textContent = turnRolls;
+        rollButton.classList.remove("disabled");
+        scorecard.classList.add("disabled");
+        dieContainer.classList.add("disabled");
     }
 }
 
