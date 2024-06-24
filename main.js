@@ -1,3 +1,4 @@
+let total = 0;
 const indices = new Array(5).fill(0);
 const locks = new Array(5).fill(false);
 const dice = Array.from(document.getElementById("die-container").children);
@@ -72,7 +73,9 @@ const displayRoll = (roll) => {
 const displayScores = (roll) => {
     const scores = getScores(roll);
     scoreBoxes.forEach((box, i) => {
-        box.textContent = scores[i];
+        if (!box.classList.contains("selected")) {
+            box.textContent = scores[i];
+        }
     });
 }
 
@@ -93,6 +96,15 @@ for (let i = 0; i < 5; i++) {
     dice[i].onclick = e => {
         e.currentTarget.classList.toggle("locked");
         locks[i] = !locks[i];
+    }
+}
+
+document.getElementById("scorecard").onclick = e => {
+    if (e.target.classList.contains("scorebox")) {
+        e.target.classList.add("selected");
+        total += parseInt(e.target.textContent);
+        dice.forEach(die=>die.classList.remove("locked"));
+        locks.fill(false);
     }
 }
 

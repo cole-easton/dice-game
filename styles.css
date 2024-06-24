@@ -74,7 +74,7 @@ button:active {
 
 .berry {
     border-radius: 100%;
-    width:80%;
+    width: 80%;
     height: 80%;
     margin-left: 10%;
     margin-top: 10%;
@@ -123,7 +123,7 @@ button:active {
     row-gap: 8px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 62px 62px 62px;
-    width:80%;
+    width: 80%;
     height: fit-content;
     margin: 1em auto;
 }
@@ -135,6 +135,7 @@ button:active {
     border-radius: 8px;
     line-height: 50px;
     text-align: center;
+    font-size: large;
 }
 
 .scorebox {
@@ -142,6 +143,20 @@ button:active {
     background-color: white;
     border-radius: 0 2px 2px 0;
     cursor: pointer;
+    font-size: 0;
+    transition: 144ms;
+}
+
+.scorebox:hover,
+.scorebox.selected {
+    font-size: larger;
+    transition: 144ms;
+}
+
+.scorebox.selected {
+    cursor: initial;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .scorecard-label {
@@ -149,5 +164,3 @@ button:active {
     background-color: #ddd;
     border-right: 6px solid black;
 }
-
-
