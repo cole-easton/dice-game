@@ -79,7 +79,6 @@ button.disabled {
 #roll {
     margin: 30px auto;
     display: block;
-
 }
 
 .berry {
@@ -175,3 +174,97 @@ button.disabled {
     background-color: #ddd;
     border-right: 6px solid black;
 }
+
+@media only screen and (max-width: 700px) {
+    .die {
+        height: 74px;
+        width: 74px;
+    }
+
+    #die-container {
+        height: 125px;
+    }
+
+    #scorecard {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .scorecard-label {
+        flex-grow: 1;
+        width: calc(100% - 50px);
+    }
+    .scorecard-category {
+        display: flex;
+        min-width: 200px;
+        flex: 1 0 200px;
+    }
+
+    .scorebox {
+        font-size: larger;
+    }
+
+    .scorebox.selected {
+        background-color: black;
+        color: white;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    
+    .die {
+        height: 36px;
+        width: 36px;
+        border-width: 3px;
+    }
+
+    #die-container {
+        height: 60px;
+        border-width: 3px;
+        box-shadow: none;
+        width: 90%;
+        margin: 18px auto;
+    }
+
+    .berry {
+        border-width: 3px;
+    }
+
+    button {
+        border-width: 3px;
+        height: 42px;
+        padding: 0 0.8em;
+        min-width: 144px;
+        border-radius: 36px;
+        font-size: 1.5em;
+    }
+
+    #roll {
+        margin: 18px auto;
+    }
+
+    #scorecard {
+        margin: 18px auto;
+        width: 90%;
+    }
+
+    .scorecard-label {
+        border-width: 3px;
+        border-radius: 5px 0 0 5px;
+    }
+    .scorecard-category {
+        display: flex;
+        border-width: 3px;
+        line-height: 36px;
+    }
+
+    .scorebox {
+        border-radius: 0 5px 5px 0;
+        width: 36px;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+  }
