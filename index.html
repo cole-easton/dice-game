@@ -1,70 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<script src= "./main.js" type = "module"></script>
+<script src="./main.js" type="module"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="./styles.css">
+
 <body>
-    <div id = "die-container" class = "disabled">
-        <div class = "die"></div>
-        <div class = "die"></div>
-        <div class = "die"></div>
-        <div class = "die"></div>
-        <div class = "die"></div>
-    </div>
-    <button id = "roll">Roll &times;<span id="rolls-left">3</span></button>
-    <div id = "scorecard" class = "disabled">
-        <div class = "scorecard-category">
-            <div class = "scorecard-label">Reds</div>
-            <div class = "scorebox"></div>
+    <div class="container">
+        <div id="die-container" class="disabled">
+            <div class="die"></div>
+            <div class="die"></div>
+            <div class="die"></div>
+            <div class="die"></div>
+            <div class="die"></div>
         </div>
-
-        <div class = "scorecard-category">
-            <div class = "scorecard-label">Yellows</div>
-            <div class = "scorebox"></div>
+        <div class="scorecard-category" id="total-category">
+            <div class="scorecard-label" id="total-label">Total</div>
+            <div id="totalbox">0</div>
         </div>
+        <button id="roll">Roll &times;<span id="rolls-left">3</span></button>
 
-        <div class = "scorecard-category">
-            <div class = "scorecard-label">Greens</div>
-            <div class = "scorebox"></div>
+
+        <div id="scorecard" class="disabled">
+            <div class="scorecard-category">
+                <div class="scorecard-label">Reds</div>
+                <div class="scorebox"></div>
+            </div>
+
+            <div class="scorecard-category">
+                <div class="scorecard-label">Yellows</div>
+                <div class="scorebox"></div>
+            </div>
+
+            <div class="scorecard-category">
+                <div class="scorecard-label">Greens</div>
+                <div class="scorebox"></div>
+            </div>
+
+            <div class="scorecard-category">
+                <div class="scorecard-label">Purples</div>
+                <div class="scorebox"></div>
+            </div>
+
+            <div class="scorecard-category">
+                <div class="scorecard-label">3 of a Kind</div>
+                <div class="scorebox"></div>
+            </div>
+
+            <div class="scorecard-category">
+                <div class="scorecard-label">4 of a Kind</div>
+                <div class="scorebox"></div>
+            </div>
+
+            <div class="scorecard-category">
+                <div class="scorecard-label">5 of a Kind</div>
+                <div class="scorebox"></div>
+            </div>
+
+            <div class="scorecard-category">
+                <div class="scorecard-label">4 Colors</div>
+                <div class="scorebox"></div>
+            </div>
+
+            <div class="scorecard-category">
+                <div class="scorecard-label">Free</div>
+                <div class="scorebox"></div>
+            </div>
+
         </div>
-
-        <div class = "scorecard-category">
-            <div class = "scorecard-label">Purples</div>
-            <div class = "scorebox"></div>
-        </div>
-
-        <div class = "scorecard-category">
-            <div class = "scorecard-label">3 of a Kind</div>
-            <div class = "scorebox"></div>
-        </div>
-
-        <div class = "scorecard-category">
-            <div class = "scorecard-label">4 of a Kind</div>
-            <div class = "scorebox"></div>
-        </div>
-
-        <div class = "scorecard-category">
-            <div class = "scorecard-label">5 of a Kind</div>
-            <div class = "scorebox"></div>
-        </div>
-
-        <div class = "scorecard-category">
-            <div class = "scorecard-label">4 Colors</div>
-            <div class = "scorebox"></div>
-        </div>
-
-        <div class = "scorecard-category">
-            <div class = "scorecard-label">Free</div>
-            <div class = "scorebox"></div>
-        </div>
-
     </div>
 </body>
 

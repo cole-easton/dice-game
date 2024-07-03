@@ -10,6 +10,10 @@ body {
     font-style: normal;
 }
 
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
 
 .die {
     height: 100px;
@@ -29,9 +33,8 @@ body {
     justify-content: space-evenly;
     align-items: center;
     box-shadow: inset 0 0 8px #444;
-    width: 80%;
+    width: 100%;
     height: 150px;
-    margin: 30px auto;
     border-radius: 8px;
     border: 6px solid black;
     background-color: #ddd;
@@ -46,15 +49,15 @@ button {
     color: white;
     background-color: #e02;
     border: 6px solid white;
-    height: 72px;
+    height: 62px;
     padding: 0 1em;
     min-width: 144px;
-    border-radius: 36px;
+    border-radius: 8px;
     font-family: "Quicksand", sans-serif;
     font-optical-sizing: auto;
     font-weight: bold;
     font-style: normal;
-    font-size: 1.7em;
+    font-size: 1.5em;
     user-select: none;
     transition: 144ms;
 }
@@ -62,8 +65,8 @@ button {
 button:hover {
     cursor: pointer;
     background-color: #f02;
-    padding: 0 1.2em;
-    font-size: 2em;
+    padding: 0 1.1em;
+    font-size: 1.7em;
     transition: 144ms;
 }
 
@@ -77,7 +80,7 @@ button.disabled {
 }
 
 #roll {
-    margin: 30px auto;
+    margin: 30px 0;
     display: block;
 }
 
@@ -132,7 +135,7 @@ button.disabled {
     row-gap: 8px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 62px 62px 62px;
-    width: 80%;
+    width: 100%;
     height: fit-content;
     margin: 1em auto;
 }
@@ -148,13 +151,21 @@ button.disabled {
     user-select: none;
 }
 
-.scorebox {
+.scorebox, #totalbox {
     width: 50px;
     background-color: white;
     border-radius: 0 2px 2px 0;
     cursor: pointer;
     font-size: 0;
     transition: 144ms;
+}
+
+#totalbox {
+    font-size: larger;
+}
+
+#total-category {
+    margin: 30px 0;
 }
 
 .scorebox:hover,
@@ -175,7 +186,24 @@ button.disabled {
     border-right: 6px solid black;
 }
 
-@media only screen and (max-width: 700px) {
+#total-label {
+    background-color: #391;
+    color: white;
+    padding: 0 1em;
+    width: unset;
+}
+
+#total-category {
+    width: fit-content;
+    min-width: unset;
+    float: right;
+}
+
+@media only screen and (max-width: 750px) {
+    .container {
+        width: 85%;
+    }
+
     .die {
         height: 74px;
         width: 74px;
@@ -200,7 +228,7 @@ button.disabled {
         flex: 1 0 200px;
     }
 
-    .scorebox {
+    .scorebox, #totalbox {
         font-size: larger;
     }
 
@@ -210,8 +238,11 @@ button.disabled {
     }
   }
 
-  @media only screen and (max-width: 450px) {
-    
+  @media only screen and (max-width: 500px) {
+    .container {
+        width: 90%;
+    }
+
     .die {
         height: 36px;
         width: 36px;
@@ -222,7 +253,7 @@ button.disabled {
         height: 60px;
         border-width: 3px;
         box-shadow: none;
-        width: 90%;
+        width: 100%;
         margin: 18px auto;
     }
 
@@ -235,17 +266,24 @@ button.disabled {
         height: 42px;
         padding: 0 0.8em;
         min-width: 144px;
-        border-radius: 36px;
         font-size: 1.5em;
     }
 
     #roll {
-        margin: 18px auto;
+        margin: 18px 0;
+    }
+
+    #total-category {
+        margin: 0;
+    }
+
+    #total-label {
+        padding: 0 0.8em;
     }
 
     #scorecard {
-        margin: 18px auto;
-        width: 90%;
+        margin: 18px 0;
+        width: 100%;
     }
 
     .scorecard-label {
@@ -258,7 +296,7 @@ button.disabled {
         line-height: 36px;
     }
 
-    .scorebox {
+    .scorebox, #totalbox {
         border-radius: 0 5px 5px 0;
         width: 36px;
     }
