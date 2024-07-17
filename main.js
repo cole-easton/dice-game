@@ -7,6 +7,7 @@ const scoreBoxes = Array.from(document.querySelectorAll(".scorebox"));
 const totalBox = document.getElementById("totalbox");
 const scorecard = document.getElementById("scorecard");
 const rollsLeftBox = document.getElementById("rolls-left");
+const messageBox = document.getElementById("message-box");
 console.log(dice);
 const rollButton = document.getElementById("roll");
 let turnRolls = 3;
@@ -34,6 +35,10 @@ const rollDice = _ => {
     rollsLeftBox.textContent = turnRolls;
     if (!turnRolls) {
         rollButton.classList.add("disabled");
+        messageBox.textContent = "You have you all 3 rolls allowed for this turn.  Please select a scoring category to complete your turn."
+    }
+    else {
+        messageBox.textContent = "Click or tap dice to lock them.  Locked dice have a red border; unlocked dice have a black border. "
     }
     scorecard.classList.remove("disabled");
     dieContainer.classList.remove("disabled");
@@ -127,13 +132,13 @@ scorecard.onclick = e => {
         if (turns) {
             rollButton.classList.remove("disabled");
             scorecard.classList.add("disabled");
+            messageBox.textContent = `Click the "Roll" button to begin your next turn.  No dice may be locked between turns.`
         }
         else {
             rollButton.classList.add("disabled");
-            //TODO 
-            //end game stuff
+            messageBox.textContent = `Congratulations! You've completed the game with a final score of ${total} points.`
         }
-        
+
     }
 }
 

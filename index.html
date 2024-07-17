@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#86f"/>
+    <meta name="theme-color" content="#86f" />
     <title>Easton Quarry Yields</title>
 </head>
 <script src="./main.js" type="module"></script>
@@ -23,12 +23,15 @@
             <div class="die"></div>
             <div class="die"></div>
         </div>
-        <div class="scorecard-category" id="total-category">
-            <div class="scorecard-label" id="total-label">Total</div>
-            <div id="totalbox">0</div>
-        </div>
-        <button id="roll">Roll &times;<span id="rolls-left">3</span></button>
 
+        <div class = "flex-row" id = "info-row">
+            <div class="scorecard-category" id="total-category">
+                <div class="scorecard-label" id="total-label">Total</div>
+                <div id="totalbox">0</div>
+            </div>
+            <div id = "message-box">Click the "Roll" button to the right to begin.</div>
+            <button id="roll">Roll &times;<span id="rolls-left">3</span></button>
+        </div>
 
         <div id="scorecard" class="disabled">
             <div class="scorecard-category">
@@ -79,7 +82,9 @@
         </div>
     </div>
     <footer>
-        Disclaimer: This game is an educational tool created for non-commercial purposes. It is not affiliated with, endorsed by, or connected to Webkinz or its parent company, Ganz. All original characters, artwork, and trademarks are the property of their respective owners.
+        Disclaimer: This game is an educational tool created for non-commercial purposes. It is not affiliated with,
+        endorsed by, or connected to Webkinz or its parent company, Ganz. All original characters, artwork, and
+        trademarks are the property of their respective owners.
     </footer>
 </body>
 
