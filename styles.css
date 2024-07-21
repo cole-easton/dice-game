@@ -30,6 +30,7 @@ body {
 .button-container>button {
     display: block;
     margin: 16px;
+    max-height: 62px;
 }
 
 footer {
@@ -214,15 +215,18 @@ button.disabled {
     border: 6px solid #e80;
     border-radius: 8px;
     font-size: small;
+    padding: 16px;
 }
 
 .scorebox,
 #totalbox {
-    width: 50px;
+    min-width: 50px;
+    width: fit-content;
     background-color: white;
     border-radius: 0 2px 2px 0;
     font-size: 0;
     transition: 144ms;
+    padding: 0 4px;
 }
 
 #totalbox {
@@ -384,7 +388,7 @@ button, #total-category {
     .scorebox,
     #totalbox {
         border-radius: 0 5px 5px 0;
-        width: 36px;
+        min-width: 36px;
     }
 
     #message-box {

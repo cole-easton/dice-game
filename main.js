@@ -35,10 +35,10 @@ const rollDice = _ => {
     rollsLeftBox.textContent = turnRolls;
     if (!turnRolls) {
         rollButton.classList.add("disabled");
-        messageBox.textContent = "You have you all 3 rolls allowed for this turn.  Please select a scoring category to complete your turn."
+        messageBox.textContent = "All rolls for this turn have been used.  Click a scorebox to select you scoring category."
     }
     else {
-        messageBox.textContent = "Click or tap dice to lock them.  Locked dice have a red border; unlocked dice have a black border. "
+        messageBox.textContent = "Click dice to lock them.  Locked dice have a red border; unlocked dice have a black border. "
     }
     scorecard.classList.remove("disabled");
     dieContainer.classList.remove("disabled");
