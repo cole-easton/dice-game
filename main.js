@@ -10,12 +10,13 @@ const rollsLeftBox = document.getElementById("rolls-left");
 const messageBox = document.getElementById("message-box");
 const modal = document.getElementById("end-game-modal");
 const rollButton = document.getElementById("roll");
+const replayButton = document.getElementById("replay-button");
 
 const statTotalBox = document.getElementById("stat-total");
+const statBestBox = document.getElementById("stat-best");
 const statMedianBox = document.getElementById("stat-median");
 const statMeanBox = document.getElementById("stat-mean");
 const statRecentBox = document.getElementById("stat-recent");
-
 
 const key = "eqy-scores";
 let turnRolls = 3;
@@ -145,7 +146,7 @@ scorecard.onclick = e => {
         else { //game is over 
             rollButton.classList.add("disabled");
             messageBox.textContent = `Congratulations! You've completed the game with a final score of ${total} points.`;
-            
+
             const scores = JSON.parse(localStorage.getItem(key)) ?? [];
             scores.unshift(total);
             localStorage.setItem(key, JSON.stringify(scores));
@@ -171,9 +172,11 @@ scorecard.onclick = e => {
                 const recentMean = Math.round(recentTotal / recentWeight);
                 statRecentBox.textContent = recentMean;
 
-                scores.sort();
-                const median = (length % 2) ? scores[Math.floor(length / 2)] :  Math.round(0.5 * scores[length / 2] + 0.5*scores[length / 2 - 1]);
+                scores.sort((a, b) => b - a);
+                const median = (length % 2) ? scores[Math.floor(length / 2)] : Math.round(0.5 * scores[length / 2] + 0.5 * scores[length / 2 - 1]);
                 statMedianBox.textContent = median;
+
+                statBestBox.textContent = scores[0];
             })();
         }
 
@@ -181,3 +184,25 @@ scorecard.onclick = e => {
 }
 
 document.getElementById("x-button").onclick = _ => modal.style.display = "none";
+
+replayButton.onclick = _ => {
+    indices.fill(0);
+    locks.fill(false);
+    total = 0;
+    turnRolls = 3;
+    turns = 9;
+    scoringAllowed = false;
+    card.length = 0;
+    for (let i = 0; i < 27; i++) {
+        card.push(getRow());
+    }
+    scoreBoxes.forEach(e => {
+        e.textContent = "";
+        e.classList.remove("selected");
+    });
+    totalBox.textContent = "";
+    rollButton.classList.remove("disabled");
+    scorecard.classList.add("disabled");
+    messageBox.textContent = `Click the "Roll" button to the right to begin.`;
+    modal.style.display = "none";
+};
