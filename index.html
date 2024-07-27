@@ -14,7 +14,38 @@
 <link rel="stylesheet" type="text/css" href="./styles.css">
 
 <body>
+    <div class="modal-container" id="end-game-modal">
+        <div class="modal-background">
+        </div>
+        <div class="modal">
+            <div id="x-button">&times;</div>
+            <h2 id = "modal-title">Game Over</h2>
+            <div id="stat-container">
+                <div class="stat-category" id = "stat-total-category">
+                    <div class="stat-label" id = "stat-total-label">Total</div>
+                    <div class="statbox" id = "stat-total"></div>
+                </div>
+
+                <div class="stat-category">
+                    <div class="stat-label">Median</div>
+                    <div class="statbox"id = "stat-median"></div>
+                </div>
+
+                <div class="stat-category">
+                    <div class="stat-label">Mean</div>
+                    <div class="statbox"id = "stat-mean"></div>
+                </div>
+
+                <div class="stat-category">
+                    <div class="stat-label">Recent Mean</div>
+                    <div class="statbox"id = "stat-recent"></div>
+                </div>
+            </div>
+            <button id = "replay-button">Play Again</button>
+        </div>
+    </div>
     <h1>Easton Quarry Yields</h1>
+
     <div class="container">
         <div id="die-container" class="disabled">
             <div class="die"></div>
@@ -24,12 +55,12 @@
             <div class="die"></div>
         </div>
 
-        <div class = "flex-row" id = "info-row">
+        <div class="flex-row" id="info-row">
             <div class="scorecard-category" id="total-category">
                 <div class="scorecard-label" id="total-label">Total</div>
                 <div id="totalbox">0</div>
             </div>
-            <div id = "message-box">Click the "Roll" button to the right to begin.</div>
+            <div id="message-box">Click the "Roll" button to the right to begin.</div>
             <button id="roll">Roll &times;<span id="rolls-left">3</span></button>
         </div>
 

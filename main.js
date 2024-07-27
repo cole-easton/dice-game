@@ -8,8 +8,16 @@ const totalBox = document.getElementById("totalbox");
 const scorecard = document.getElementById("scorecard");
 const rollsLeftBox = document.getElementById("rolls-left");
 const messageBox = document.getElementById("message-box");
-console.log(dice);
+const modal = document.getElementById("end-game-modal");
 const rollButton = document.getElementById("roll");
+
+const statTotalBox = document.getElementById("stat-total");
+const statMedianBox = document.getElementById("stat-median");
+const statMeanBox = document.getElementById("stat-mean");
+const statRecentBox = document.getElementById("stat-recent");
+
+
+const key = "eqy-scores";
 let turnRolls = 3;
 let turns = 9;
 let scoringAllowed = false;
@@ -134,11 +142,42 @@ scorecard.onclick = e => {
             scorecard.classList.add("disabled");
             messageBox.textContent = `Click the "Roll" button to begin your next turn.  No dice may be locked between turns.`
         }
-        else {
+        else { //game is over 
             rollButton.classList.add("disabled");
-            messageBox.textContent = `Congratulations! You've completed the game with a final score of ${total} points.`
+            messageBox.textContent = `Congratulations! You've completed the game with a final score of ${total} points.`;
+            
+            const scores = JSON.parse(localStorage.getItem(key)) ?? [];
+            scores.unshift(total);
+            localStorage.setItem(key, JSON.stringify(scores));
+
+            modal.style.display = "block";
+            statTotalBox.textContent = total;
+            (async _ => { //async so that even if array gets really long, app doesn't hang
+                const length = scores.length;
+                const mean = Math.round(scores.reduce((a, e) => a + e, 0) / length);
+                statMeanBox.textContent = mean;
+
+                let recentTotal = 0;
+                let recentWeight = 0;
+                for (let i = 0; i < 12; i++) {
+                    if (i < length) {
+                        recentTotal += (12 - i) * scores[i];
+                        recentWeight += 12 - i;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                const recentMean = Math.round(recentTotal / recentWeight);
+                statRecentBox.textContent = recentMean;
+
+                scores.sort();
+                const median = (length % 2) ? scores[Math.floor(length / 2)] :  Math.round(0.5 * scores[length / 2] + 0.5*scores[length / 2 - 1]);
+                statMedianBox.textContent = median;
+            })();
         }
 
     }
 }
 
+document.getElementById("x-button").onclick = _ => modal.style.display = "none";
