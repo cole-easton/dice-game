@@ -18,110 +18,111 @@
         <div class="modal-background">
         </div>
         <div class="modal">
-            <div id="x-button">&times;</div>
-            <h2 id = "modal-title">Game Over</h2>
+            <h2 id="modal-title">End Game Statistics</h2>
             <div id="stat-container">
-                <div class="stat-category" id = "stat-total-category">
-                    <div class="stat-label" id = "stat-total-label">Total</div>
-                    <div class="statbox" id = "stat-total"></div>
+                <div class="stat-category" id="stat-total-category">
+                    <div class="stat-label" id="stat-total-label">Total</div>
+                    <div class="statbox" id="stat-total"></div>
                 </div>
 
                 <div class="stat-category">
                     <div class="stat-label">Personal Best</div>
-                    <div class="statbox"id = "stat-best"></div>
+                    <div class="statbox" id="stat-best"></div>
                 </div>
 
                 <div class="stat-category">
                     <div class="stat-label">Median</div>
-                    <div class="statbox"id = "stat-median"></div>
+                    <div class="statbox" id="stat-median"></div>
                 </div>
 
                 <div class="stat-category">
                     <div class="stat-label">Mean</div>
-                    <div class="statbox"id = "stat-mean"></div>
+                    <div class="statbox" id="stat-mean"></div>
                 </div>
 
                 <div class="stat-category">
                     <div class="stat-label">Recent Mean</div>
-                    <div class="statbox"id = "stat-recent"></div>
+                    <div class="statbox" id="stat-recent"></div>
                 </div>
             </div>
-            <button id = "replay-button">Play Again</button>
+            <button id="replay-button">Play Again</button>
         </div>
     </div>
-    <h1>Easton Quarry Yields</h1>
+    <div id="non-modal">
+        <h1>Easton Quarry Yields</h1>
 
-    <div class="container">
-        <div id="die-container" class="disabled">
-            <div class="die"></div>
-            <div class="die"></div>
-            <div class="die"></div>
-            <div class="die"></div>
-            <div class="die"></div>
+        <div class="container">
+            <div id="die-container" class="disabled">
+                <div class="die"></div>
+                <div class="die"></div>
+                <div class="die"></div>
+                <div class="die"></div>
+                <div class="die"></div>
+            </div>
+
+            <div class="flex-row" id="info-row">
+                <div class="scorecard-category" id="total-category">
+                    <div class="scorecard-label" id="total-label">Total</div>
+                    <div id="totalbox">0</div>
+                </div>
+                <div id="message-box">Click the "Roll" button to the right to begin.</div>
+                <button id="roll">Roll &times;<span id="rolls-left">3</span></button>
+            </div>
+
+            <div id="scorecard" class="disabled">
+                <div class="scorecard-category">
+                    <div class="scorecard-label">Reds</div>
+                    <div class="scorebox"></div>
+                </div>
+
+                <div class="scorecard-category">
+                    <div class="scorecard-label">Yellows</div>
+                    <div class="scorebox"></div>
+                </div>
+
+                <div class="scorecard-category">
+                    <div class="scorecard-label">Greens</div>
+                    <div class="scorebox"></div>
+                </div>
+
+                <div class="scorecard-category">
+                    <div class="scorecard-label">Purples</div>
+                    <div class="scorebox"></div>
+                </div>
+
+                <div class="scorecard-category">
+                    <div class="scorecard-label">3 of a Kind</div>
+                    <div class="scorebox"></div>
+                </div>
+
+                <div class="scorecard-category">
+                    <div class="scorecard-label">4 of a Kind</div>
+                    <div class="scorebox"></div>
+                </div>
+
+                <div class="scorecard-category">
+                    <div class="scorecard-label">5 of a Kind</div>
+                    <div class="scorebox"></div>
+                </div>
+
+                <div class="scorecard-category">
+                    <div class="scorecard-label">4 Colors</div>
+                    <div class="scorebox"></div>
+                </div>
+
+                <div class="scorecard-category">
+                    <div class="scorecard-label">Free</div>
+                    <div class="scorebox"></div>
+                </div>
+
+            </div>
         </div>
-
-        <div class="flex-row" id="info-row">
-            <div class="scorecard-category" id="total-category">
-                <div class="scorecard-label" id="total-label">Total</div>
-                <div id="totalbox">0</div>
-            </div>
-            <div id="message-box">Click the "Roll" button to the right to begin.</div>
-            <button id="roll">Roll &times;<span id="rolls-left">3</span></button>
-        </div>
-
-        <div id="scorecard" class="disabled">
-            <div class="scorecard-category">
-                <div class="scorecard-label">Reds</div>
-                <div class="scorebox"></div>
-            </div>
-
-            <div class="scorecard-category">
-                <div class="scorecard-label">Yellows</div>
-                <div class="scorebox"></div>
-            </div>
-
-            <div class="scorecard-category">
-                <div class="scorecard-label">Greens</div>
-                <div class="scorebox"></div>
-            </div>
-
-            <div class="scorecard-category">
-                <div class="scorecard-label">Purples</div>
-                <div class="scorebox"></div>
-            </div>
-
-            <div class="scorecard-category">
-                <div class="scorecard-label">3 of a Kind</div>
-                <div class="scorebox"></div>
-            </div>
-
-            <div class="scorecard-category">
-                <div class="scorecard-label">4 of a Kind</div>
-                <div class="scorebox"></div>
-            </div>
-
-            <div class="scorecard-category">
-                <div class="scorecard-label">5 of a Kind</div>
-                <div class="scorebox"></div>
-            </div>
-
-            <div class="scorecard-category">
-                <div class="scorecard-label">4 Colors</div>
-                <div class="scorebox"></div>
-            </div>
-
-            <div class="scorecard-category">
-                <div class="scorecard-label">Free</div>
-                <div class="scorebox"></div>
-            </div>
-
-        </div>
+        <footer>
+            Disclaimer: This game is an educational tool created for non-commercial purposes. It is not affiliated with,
+            endorsed by, or connected to Webkinz or its parent company, Ganz. All original characters, artwork, and
+            trademarks are the property of their respective owners.
+        </footer>
     </div>
-    <footer>
-        Disclaimer: This game is an educational tool created for non-commercial purposes. It is not affiliated with,
-        endorsed by, or connected to Webkinz or its parent company, Ganz. All original characters, artwork, and
-        trademarks are the property of their respective owners.
-    </footer>
 </body>
 
 </html>

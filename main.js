@@ -9,6 +9,7 @@ const scorecard = document.getElementById("scorecard");
 const rollsLeftBox = document.getElementById("rolls-left");
 const messageBox = document.getElementById("message-box");
 const modal = document.getElementById("end-game-modal");
+const nonModal = document.getElementById("non-modal");
 const rollButton = document.getElementById("roll");
 const replayButton = document.getElementById("replay-button");
 
@@ -152,6 +153,8 @@ scorecard.onclick = e => {
             localStorage.setItem(key, JSON.stringify(scores));
 
             modal.style.display = "block";
+            nonModal.classList.add("disabled");
+
             statTotalBox.textContent = total;
             (async _ => { //async so that even if array gets really long, app doesn't hang
                 const length = scores.length;
@@ -183,8 +186,6 @@ scorecard.onclick = e => {
     }
 }
 
-document.getElementById("x-button").onclick = _ => modal.style.display = "none";
-
 replayButton.onclick = _ => {
     indices.fill(0);
     locks.fill(false);
@@ -205,4 +206,5 @@ replayButton.onclick = _ => {
     scorecard.classList.add("disabled");
     messageBox.textContent = `Click the "Roll" button to the right to begin.`;
     modal.style.display = "none";
+    nonModal.classList.remove("disabled");
 };

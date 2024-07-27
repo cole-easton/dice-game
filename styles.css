@@ -3,17 +3,19 @@
 }
 
 body {
-    background-color: #98ddff;
+    margin: 0;
+    padding: 0;
     font-family: "Quicksand", sans-serif;
     font-optical-sizing: auto;
     font-weight: bold;
     font-style: normal;
-    margin: 0;
-    padding: 0;
+}
+
+#non-modal {
+    background-color: #98ddff;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-
 }
 
 #end-game-modal {
@@ -25,7 +27,7 @@ body {
     width: min(90%, 500px);
     /*height: 80vh;*/
     min-height: fit-content;
-    background-color: #6d4;
+    background-color: #98ddff;
     border-radius: 8px;
     border: 6px solid black;
     box-shadow: 0 0 8px #000;
@@ -37,21 +39,10 @@ body {
 
 .modal-background {
     position: fixed;
-    /*background-color: rgba(0,0,0, 0.4);*/
-    background-color: rgba(51, 153, 17, 0.5);
+    background-color: rgba(0,0,0, 0.55);
     width: 100%;
     height: 100vh;
     z-index: 4;
-}
-
-#x-button {
-    position: absolute;
-    top: 6px;
-    right: 24px;
-    user-select: none;
-    -webkit-user-select: none;
-    font-size: 48px;
-    cursor: pointer;
 }
 
 #replay-button {
@@ -102,7 +93,7 @@ h1 {
     margin: 0;
     color: white;
     position: sticky;
-    top: 0;
+    top: -1px;
     width: 100%;
     z-index: 2;
 }
@@ -325,7 +316,8 @@ button.disabled {
 }
 
 #stat-total-label {
-    background-color: #fe0;
+    background-color: #391;
+    color: #fff;
 }
 
 #total-label {
@@ -384,8 +376,7 @@ button, #total-category {
         flex: 1 0 200px;
     }
 
-    .scorebox,
-    #totalbox {
+    .scorebox {
         font-size: larger;
     }
 
@@ -404,6 +395,14 @@ button, #total-category {
     footer {
         border-top-width: 3px;
         padding: 8px 16px;
+    }
+
+    .modal {
+        border-width: 3px;
+    }
+
+    #modal-title {
+        border-bottom-width: 3px;
     }
 
     .container {
@@ -428,9 +427,13 @@ button, #total-category {
         border-width: 3px;
     }
 
-    button, #total-category {
+    button, #total-category, .stat-category {
         border-width: 3px;
         height: 42px;
+        line-height: 36px;
+    }
+
+    button, #total-category {
         font-size: 1.5em;
     }
 
@@ -447,9 +450,10 @@ button, #total-category {
         width: 100%;
     }
 
-    .scorecard-label {
+    .scorecard-label, .stat-label {
         border-width: 3px;
         border-radius: 5px 0 0 5px;
+        font-size: normal;
     }
 
     .scorecard-category {
@@ -459,7 +463,7 @@ button, #total-category {
     }
 
     .scorebox,
-    #totalbox {
+    #totalbox, .statbox {
         border-radius: 0 5px 5px 0;
         min-width: 36px;
     }
