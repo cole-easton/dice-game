@@ -403,6 +403,7 @@ button, #total-category {
 
     #modal-title {
         border-bottom-width: 3px;
+        border-radius: 5px 5px 0 0;
     }
 
     .container {
@@ -472,4 +473,15 @@ button, #total-category {
         display: none;
     }
 
+}
+
+@media only screen and (max-height: 650px) {
+    .modal {
+        margin-top: 24px;
+    }
+
+    #replay-button {
+        padding: 8px;
+        line-height: 48px;
+    }
 }
