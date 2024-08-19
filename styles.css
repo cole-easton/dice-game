@@ -411,9 +411,15 @@ button, #total-category {
     }
 
     .die {
-        height: 36px;
-        width: 36px;
+        height: 52px;
+        width: 52px;
         border-width: 3px;
+        border-color: rgba(0,0,0,0);
+        background-color: rgba(0,0,0,0);
+    }
+
+    .locked {
+        border-color: #6d4;
     }
 
     #die-container {
@@ -422,10 +428,15 @@ button, #total-category {
         box-shadow: none;
         width: 100%;
         margin: 18px auto;
+        background-color: #444;
     }
 
     .berry {
         border-width: 3px;
+        width: 95%;
+        height: 95%;
+        margin-top: 2.5%;
+        margin-left: 2.5%;
     }
 
     button, #total-category, .stat-category {
