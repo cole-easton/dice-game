@@ -5,7 +5,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Quicksand", sans-serif;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
     font-optical-sizing: auto;
     font-weight: bold;
     font-style: normal;
@@ -104,8 +105,9 @@ h1 {
 }
 
 .die {
-    height: 100px;
-    width: 100px;
+    height: 124px;
+    width: 124px;
+    padding: 6px;
     border-radius: 8px;
     border: 6px solid black;
     background-color: #fff;
@@ -153,11 +155,11 @@ button {
     padding: 0 1em;
     min-width: 144px;
     border-radius: 8px;
-    font-family: "Quicksand", sans-serif;
+    font-family: "Roboto Slab", sans-serif;
     font-optical-sizing: auto;
     font-weight: bold;
     font-style: normal;
-    font-size: 1.5em;
+    font-size: 24px;
     user-select: none;
     transition: 144ms;
 }
@@ -188,14 +190,9 @@ button.disabled {
     margin: 36px 0;
 }
 
-.berry {
-    border-radius: 100%;
-    width: 80%;
-    height: 80%;
-    margin-left: 10%;
-    margin-top: 10%;
-    border-width: 6px;
-    border-style: solid;
+.gem {
+    width: 100%;
+    height: 100%;
 }
 
 .type-0 {
@@ -208,7 +205,7 @@ button.disabled {
     border-color: black;
 }
 
-.type-1 {
+/* .type-1 {
     background-color: #e02;
     border-color: #902;
 }
@@ -226,7 +223,7 @@ button.disabled {
 .type-4 {
     background-color: #86f;
     border-color: #50f;
-}
+} */
 
 .locked {
     border-color: red;
@@ -323,6 +320,7 @@ button.disabled {
 #total-label {
     background-color: #391;
     color: white;
+    font-size: 24px;
     padding: 0 1em;
     width: unset;
 }
@@ -413,6 +411,7 @@ button, #total-category {
     .die {
         height: 52px;
         width: 52px;
+        padding: 0px;
         border-width: 3px;
         border-color: rgba(0,0,0,0);
         background-color: rgba(0,0,0,0);
@@ -431,7 +430,7 @@ button, #total-category {
         background-color: #444;
     }
 
-    .berry {
+    .gem {
         border-width: 3px;
         width: 95%;
         height: 95%;
@@ -446,7 +445,7 @@ button, #total-category {
     }
 
     button, #total-category {
-        font-size: 1.5em;
+        font-size: 24px;
     }
 
     #info-row {

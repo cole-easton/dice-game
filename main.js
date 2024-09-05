@@ -1,4 +1,5 @@
 import * as CardGenerator from "./cardGenerator.js";
+import * as GemManager from './gems.js';
 
 run(false);
 
@@ -28,7 +29,7 @@ export function run(isDaily) {
     let turnRolls = 3;
     let turns = 9;
 
-    const card = isDaily?CardGenerator.getDailyCard():CardGenerator.getRandomCard();
+    let card = isDaily ? CardGenerator.getDailyCard() : CardGenerator.getRandomCard();
 
     const getCurrentRoll = _ => new Array(5).fill().map((_, i) => card[indices[i]][i]);
     const rollDice = _ => {
@@ -91,8 +92,11 @@ export function run(isDaily) {
 
     const displayRoll = (roll) => {
         dice.forEach((die, i) => {
-            die.innerHTML = `<div class="berry type-${roll[i]}"></div>`
+            if (!die.classList.contains('locked')) {
+                die.innerHTML = `<canvas width=200 height=200 class="gem type-${roll[i]}"></canvas>`;
+            }
         });
+        GemManager.updateGems();
     }
 
     const displayScores = (roll) => {
@@ -182,10 +186,7 @@ export function run(isDaily) {
         total = 0;
         turnRolls = 3;
         turns = 9;
-        card.length = 0;
-        for (let i = 0; i < 27; i++) {
-            card.push(getRow());
-        }
+        card = isDaily ? CardGenerator.getDailyCard() : CardGenerator.getRandomCard();
         scoreBoxes.forEach(e => {
             e.textContent = "";
             e.classList.remove("selected");
