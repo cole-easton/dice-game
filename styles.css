@@ -191,39 +191,30 @@ button.disabled {
 }
 
 .gem {
+    border-radius: 12px;
     width: 100%;
     height: 100%;
 }
 
 .type-0 {
-    border-radius: 8px;
-    width: 30%;
-    height: 30%;
-    margin-left: 35%;
-    margin-top: 35%;
     background-color: #444;
-    border-color: black;
 }
 
-/* .type-1 {
+.type-1 {
     background-color: #e02;
-    border-color: #902;
 }
 
 .type-2 {
     background-color: #fe0;
-    border-color: #e80;
 }
 
 .type-3 {
-    background-color: #6d4;
-    border-color: #391;
+    background-color: #53ff24;
 }
 
 .type-4 {
     background-color: #86f;
-    border-color: #50f;
-} */
+} 
 
 .locked {
     border-color: red;
@@ -313,12 +304,12 @@ button.disabled {
 }
 
 #stat-total-label {
-    background-color: #391;
+    background-color: #2aa800;
     color: #fff;
 }
 
 #total-label {
-    background-color: #391;
+    background-color: #2aa800;
     color: white;
     font-size: 24px;
     padding: 0 1em;
@@ -342,7 +333,7 @@ button, #total-category {
     margin-top: 23vh;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 780px) {
     .container {
         width: 85%;
     }
@@ -350,7 +341,31 @@ button, #total-category {
     .die {
         height: 74px;
         width: 74px;
+        padding: 0;
     }
+
+    .gem {
+        border-radius: 0;
+    }
+
+    .type-0 {
+        background-color: white;
+    }
+    .type-1 {
+        background-color: hsl(0, 100%, 75%);
+    }
+    
+    .type-2 {
+        background-color: hsl(60, 100%, 75%);
+    }
+    
+    .type-3 {
+        background-color: hsl(107, 100%, 85%);
+    }
+    
+    .type-4 {
+        background-color: hsl(253, 100%, 85%);
+    } 
 
     #die-container {
         height: 125px;
@@ -383,6 +398,11 @@ button, #total-category {
         color: white;
     }
 }
+@media only screen and (max-width: 600px) {
+    #message-box {
+        display: none;
+    }
+}
 
 @media only screen and (max-width: 500px) {
     h1 {
@@ -409,8 +429,8 @@ button, #total-category {
     }
 
     .die {
-        height: 52px;
-        width: 52px;
+        height: 60px;
+        width: 60px;
         padding: 0px;
         border-width: 3px;
         border-color: rgba(0,0,0,0);
@@ -418,11 +438,11 @@ button, #total-category {
     }
 
     .locked {
-        border-color: #6d4;
+        border-color: #53ff24;
     }
 
     #die-container {
-        height: 60px;
+        height: 72px;
         border-width: 3px;
         box-shadow: none;
         width: 100%;
@@ -431,11 +451,11 @@ button, #total-category {
     }
 
     .gem {
-        border-width: 3px;
         width: 95%;
         height: 95%;
         margin-top: 2.5%;
         margin-left: 2.5%;
+        background-color: rgba(0,0,0,0);
     }
 
     button, #total-category, .stat-category {
