@@ -33,13 +33,17 @@
     align-items: center;
 }
 
-@supports (-moz-appearance:none) {
-    .chart-bar { 
-        flex-grow: 0;
-    } 
 
+input[type='checkbox'] {
+    accent-color: #0af;
 }
 
+@supports (-moz-appearance:none) {
+    .chart-bar {
+        flex-grow: 0;
+    }
+
+}
 
 
 @media only screen and (min-width: 780px) {
@@ -61,22 +65,24 @@
         padding: 2px;
         margin: 0 2px;
     }
+
     @supports (-moz-appearance:none) {
         .chart {
             max-width: 100%;
         }
+
         .chart-bar {
             padding: 1px;
             margin: 0 1.5px;
         }
     }
-} 
+}
 
 @media only screen and (max-width: 600px) {
     .chart {
         padding: 12px 3px 0px 3px;
     }
-    
+
     .chart-bar {
         padding: 1px;
     }
@@ -102,10 +108,19 @@
 @media only screen and (max-width: 470px) {
     .chart {
         padding: 12px 1px 0px 1px;
+        background-color: #444;
     }
 
     .chart-bar {
         font-size: 10pt;
         margin: 0 1px;
+        background-color: #86f;
+        color: white;
     }
+
+
+    input[type='checkbox'] {
+        accent-color: #86f;
+    }
+
 }
