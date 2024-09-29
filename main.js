@@ -153,7 +153,9 @@ export function run(isDaily) {
                 (async _ => { //async so that even if array gets really long, app doesn't hang
                     const length = scores.length;
                     const mean = Math.round(scores.reduce((a, e) => a + e, 0) / length);
-                    statMeanBox.textContent = mean;
+                    if (statMeanBox) {
+                        statMeanBox.textContent = mean;
+                    }
 
                     let recentTotal = 0;
                     let recentWeight = 0;
@@ -167,11 +169,15 @@ export function run(isDaily) {
                         }
                     }
                     const recentMean = Math.round(recentTotal / recentWeight);
-                    statRecentBox.textContent = recentMean;
+                    if (statRecentBox) {
+                        statRecentBox.textContent = recentMean;
+                    }
 
                     scores.sort((a, b) => b - a);
                     const median = (length % 2) ? scores[Math.floor(length / 2)] : Math.round(0.5 * scores[length / 2] + 0.5 * scores[length / 2 - 1]);
-                    statMedianBox.textContent = median;
+                    if (statMedianBox) {
+                        statMedianBox.textContent = median;
+                    }
 
                     statBestBox.textContent = scores[0];
                 })();
