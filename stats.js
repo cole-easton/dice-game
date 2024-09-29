@@ -19,7 +19,7 @@ export function getStandardDeviation() {
 const sd = getStandardDeviation();
 
 export function getSkewness() {
-    return data.reduce((a, e) => a + Math.pow((e - mean) / sd, 3) / length);
+    return data.reduce((a, e) => a + Math.pow((e - mean) / sd, 3), 0)*length/((length-1)*(length-2));
 }
 
 export function getMedian() {
@@ -96,7 +96,7 @@ document.getElementById("stat-mean").textContent = mean.toFixed(1);
 document.getElementById("stat-median").textContent = getMedian();
 document.getElementById("stat-mode").textContent = getModeAndFreq()[0];
 document.getElementById("stat-sd").textContent = sd.toFixed(2);
-document.getElementById("stat-skew").textContent = getSkewness().toFixed(1);
+document.getElementById("stat-skew").textContent = getSkewness().toFixed(2);
 document.getElementById("stat-q1").textContent = Q1;
 document.getElementById("stat-q3").textContent = Q3;
 document.getElementById("stat-lf").textContent = Math.ceil(lowerFence);
