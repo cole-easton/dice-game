@@ -97,6 +97,7 @@ input[type='checkbox'] {
 
     .chart-bar {
         padding: 0;
+        border-radius: 3px;
     }
 
     h2 {
