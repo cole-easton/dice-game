@@ -302,6 +302,7 @@ button.disabled {
     flex-grow: 1;
     background-color: #ddd;
     border-right: 6px solid black;
+    overflow: hidden;
 }
 
 #stat-total-label {
