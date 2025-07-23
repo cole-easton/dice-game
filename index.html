@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="modal-container" id="end-game-modal">
+    <div class="modal-container" id="stats-modal">
         <div class="modal-background">
         </div>
         <div class="modal">
@@ -40,6 +40,24 @@
             <button onclick="window.location.href='./stats.html'">More Stats</button>
         </div>
     </div>
+
+    <div class="modal-container" id="daily-end-modal">
+        <div class="modal-background">
+        </div>
+        <div class="modal">
+            <h2 id="modal-title">Daily Mine Results</h2>
+            <div id="stat-container">
+                <div class="stat-category" id="daily-total-category">
+                    <div class="stat-label" id="daily-total-label">Score</div>
+                    <div class="statbox" id="daily-total"></div>
+                </div>
+
+            </div>
+            <button id="share-score">Copy Score</button>
+            <button onclick="window.location.href='./index.html?daily=false'">Unlimited Play</button>
+        </div>
+    </div>
+
     <div id="non-modal">
         <h1>Easton Quarry Yields</h1>
 

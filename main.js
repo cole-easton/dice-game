@@ -1,7 +1,7 @@
 import * as CardGenerator from "./cardGenerator.js";
 import * as GemManager from './gems.js';
 
-run(false);
+run(new URLSearchParams(window.location.search).get("daily") === "true");
 
 export function run(isDaily) {
     let total = 0;
@@ -14,7 +14,8 @@ export function run(isDaily) {
     const scorecard = document.getElementById("scorecard");
     const rollsLeftBox = document.getElementById("rolls-left");
     const messageBox = document.getElementById("message-box");
-    const modal = document.getElementById("end-game-modal");
+    const statsModal = document.getElementById("stats-modal");
+    const dailyModal = document.getElementById("daily-end-modal");
     const nonModal = document.getElementById("non-modal");
     const rollButton = document.getElementById("roll");
     const replayButton = document.getElementById("replay-button");
@@ -25,7 +26,29 @@ export function run(isDaily) {
     const statMeanBox = document.getElementById("stat-mean");
     const statRecentBox = document.getElementById("stat-recent");
 
-    const key = "eqy-scores";
+    const dailyTotalBox = document.getElementById("daily-total");
+    const dailyShareButton = document.getElementById("share-score");
+
+    const key = isDaily ? "eqy-daily-scores" : "eqy-scores";
+    const scores = JSON.parse(localStorage.getItem(key)) ?? (isDaily ? {} : []);
+
+    const date = new Date().toJSON().slice(0, 10);
+
+    const dailyGameOver = _ => {
+        dailyModal.style.display = "block";
+        nonModal.classList.add("disabled");
+        dailyTotalBox.textContent = total;
+        dailyShareButton.onclick = _ => {
+            navigator.clipboard.writeText(`I earned ${total} points on today's Daily Mine on Easton Quarry Yields!
+                            \n Can you beat me? \n Try now at ${window.location.href}`).then(_ => console.log("success"), _ => console.log("failure"));
+        };
+    }
+
+    if (isDaily && scores[date]) {
+        total = scores[date];
+        dailyGameOver();
+    }
+
     let turnRolls = 3;
     let turns = 9;
 
@@ -142,45 +165,52 @@ export function run(isDaily) {
                 rollButton.classList.add("disabled");
                 messageBox.textContent = `Congratulations! You've completed the game with a final score of ${total} points.`;
 
-                const scores = JSON.parse(localStorage.getItem(key)) ?? [];
-                scores.unshift(total);
-                localStorage.setItem(key, JSON.stringify(scores));
+                if (isDaily) {
+                    dailyGameOver();
+                    scores[date] = total;
+                    localStorage.setItem(key, JSON.stringify(scores));
+                }
+                else {
+                    const scores = JSON.parse(localStorage.getItem(key)) ?? [];
+                    scores.unshift(total);
+                    localStorage.setItem(key, JSON.stringify(scores));
 
-                modal.style.display = "block";
-                nonModal.classList.add("disabled");
+                    statsModal.style.display = "block";
+                    nonModal.classList.add("disabled");
 
-                statTotalBox.textContent = total;
-                (async _ => { //async so that even if array gets really long, app doesn't hang
-                    const length = scores.length;
-                    const mean = Math.round(scores.reduce((a, e) => a + e, 0) / length);
-                    if (statMeanBox) {
-                        statMeanBox.textContent = mean;
-                    }
-
-                    let recentTotal = 0;
-                    let recentWeight = 0;
-                    for (let i = 0; i < 12; i++) {
-                        if (i < length) {
-                            recentTotal += (12 - i) * scores[i];
-                            recentWeight += 12 - i;
+                    statTotalBox.textContent = total;
+                    (async _ => { //async so that even if array gets really long, app doesn't hang
+                        const length = scores.length;
+                        const mean = Math.round(scores.reduce((a, e) => a + e, 0) / length);
+                        if (statMeanBox) {
+                            statMeanBox.textContent = mean;
                         }
-                        else {
-                            break;
+
+                        let recentTotal = 0;
+                        let recentWeight = 0;
+                        for (let i = 0; i < 12; i++) {
+                            if (i < length) {
+                                recentTotal += (12 - i) * scores[i];
+                                recentWeight += 12 - i;
+                            }
+                            else {
+                                break;
+                            }
                         }
-                    }
-                    const recentMean = Math.round(recentTotal / recentWeight);
-                    if (statRecentBox) {
-                        statRecentBox.textContent = recentMean;
-                    }
+                        const recentMean = Math.round(recentTotal / recentWeight);
+                        if (statRecentBox) {
+                            statRecentBox.textContent = recentMean;
+                        }
 
-                    scores.sort((a, b) => b - a);
-                    const median = (length % 2) ? scores[Math.floor(length / 2)] : Math.round(0.5 * scores[length / 2] + 0.5 * scores[length / 2 - 1]);
-                    if (statMedianBox) {
-                        statMedianBox.textContent = median;
-                    }
+                        scores.sort((a, b) => b - a);
+                        const median = (length % 2) ? scores[Math.floor(length / 2)] : Math.round(0.5 * scores[length / 2] + 0.5 * scores[length / 2 - 1]);
+                        if (statMedianBox) {
+                            statMedianBox.textContent = median;
+                        }
 
-                    statBestBox.textContent = scores[0];
-                })();
+                        statBestBox.textContent = scores[0];
+                    })();
+                }
             }
 
         }
@@ -201,7 +231,7 @@ export function run(isDaily) {
         rollButton.classList.remove("disabled");
         scorecard.classList.add("disabled");
         messageBox.textContent = `Click the "Roll" button to the right to begin.`;
-        modal.style.display = "none";
+        statsModal.style.display = "none";
         nonModal.classList.remove("disabled");
     };
 }

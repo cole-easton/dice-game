@@ -19,8 +19,12 @@ body {
     min-height: 100vh;
 }
 
-#end-game-modal {
+#stats-modal {
     display: none;  
+}
+
+#daily-end-modal {
+    display: none;
 }
 
 .modal {
@@ -168,7 +172,7 @@ button:hover {
     cursor: pointer;
     background-color: #f02;
     padding: 0 1.1em;
-    font-size: 1.7em;
+    font-size: 1.66em;
     transition: 144ms;
     width: 264px;
 }
