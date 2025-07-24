@@ -131,19 +131,39 @@ export function run(isDaily) {
         });
     }
 
-    rollButton.onclick = _ => {
+    const rollAndUpdate = _ => {
+        if (rollButton.classList.contains("disabled")) return; 
         rollDice();
         const roll = getCurrentRoll();
         displayRoll(roll);
         displayScores(roll);
     }
 
+    rollButton.onclick = rollAndUpdate;
+
+    const toggleDie = i => {
+        dice[i].classList.toggle("locked");
+        locks[i] = !locks[i];
+    }
+
     for (let i = 0; i < 5; i++) {
         dice[i].onclick = e => {
-            e.currentTarget.classList.toggle("locked");
-            locks[i] = !locks[i];
-        }
+            toggleDie(i);
+        };
     }
+
+    window.onkeydown = e => {
+        console.log(e.key);
+        if (e.key >= "1" && e.key <= "5") {
+            const index = parseInt(e.key, 10) - 1;
+            toggleDie(index);
+        }
+        else if (e.key === "Enter") {
+            rollAndUpdate();
+        }
+    };
+
+
 
     scorecard.onclick = e => {
         if (e.target.classList.contains("scorebox") && !e.target.classList.contains("selected")) {
