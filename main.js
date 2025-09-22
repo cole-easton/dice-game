@@ -34,19 +34,29 @@ export function run(isDaily) {
 
     const date = new Date().toJSON().slice(0, 10);
 
-    const dailyGameOver = _ => {
+    const dailyGameOverUI = _ => { 
+        const streaks = getStreaks(Object.keys(scores));
+    
         dailyModal.style.display = "block";
         nonModal.classList.add("disabled");
         dailyTotalBox.textContent = total;
-        dailyShareButton.onclick = _ => {
-            navigator.clipboard.writeText(`I earned ${total} points on today's Daily Mine on Easton Quarry Yields!
-                            \n Can you beat me? \n Try now at ${window.location.href}`).then(_ => console.log("success"), _ => console.log("failure"));
+    
+        const streakBox = document.getElementById("daily-streak");
+        if (streakBox) streakBox.textContent = streaks.current;
+    
+        renderCalendar(scores, date);
+    
+        dailyShareButton.onclick = () => {
+            navigator.clipboard.writeText(
+                `I earned ${total} points on today's Daily Mine on Easton Quarry Yields!\nCan you beat me?\nTry now at ${window.location.href}`
+            ).then(_ => console.log("success"), _ => console.log("failure"));
         };
-    }
+    };
+    
 
     if (isDaily && scores[date]) {
         total = scores[date];
-        dailyGameOver();
+        dailyGameOverUI();
     }
 
     let turnRolls = 3;
@@ -123,10 +133,10 @@ export function run(isDaily) {
     }
 
     const displayScores = (roll) => {
-        const scores = getScores(roll);
+        const rollScores = getScores(roll);
         scoreBoxes.forEach((box, i) => {
             if (!box.classList.contains("selected")) {
-                box.textContent = scores[i];
+                box.textContent = rollScores[i];
             }
         });
     }
@@ -153,7 +163,6 @@ export function run(isDaily) {
     }
 
     window.onkeydown = e => {
-        console.log(e.key);
         if (e.key >= "1" && e.key <= "5") {
             const index = parseInt(e.key, 10) - 1;
             toggleDie(index);
@@ -186,12 +195,11 @@ export function run(isDaily) {
                 messageBox.textContent = `Congratulations! You've completed the game with a final score of ${total} points.`;
 
                 if (isDaily) {
-                    dailyGameOver();
                     scores[date] = total;
                     localStorage.setItem(key, JSON.stringify(scores));
+                    dailyGameOverUI();
                 }
                 else {
-                    const scores = JSON.parse(localStorage.getItem(key)) ?? [];
                     scores.unshift(total);
                     localStorage.setItem(key, JSON.stringify(scores));
 
@@ -255,3 +263,59 @@ export function run(isDaily) {
         nonModal.classList.remove("disabled");
     };
 }
+
+function getStreaks(dates) {
+    if (dates.length === 0) return { current: 0, longest: 0 };
+    const sorted = dates.map(d => new Date(d)).sort((a, b) => a - b);
+
+    let current = 1, longest = 1;
+    for (let i = 1; i < sorted.length; i++) {
+        const diff = (sorted[i] - sorted[i - 1]) / (1000 * 60 * 60 * 24);
+        if (diff === 1) {
+            current++;
+            longest = Math.max(longest, current);
+        } else {
+            current = 1;
+        }
+    }
+    return { current, longest };
+}
+
+function renderCalendar(data) {
+    const grid = document.getElementById("calendar-grid");
+    grid.innerHTML = "";
+  
+    const today = new Date();
+    const days = [];
+  
+    // Collect last 14 days (including today)
+    for (let i = 13; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      days.push(d);
+    }
+  
+    days.forEach(d => {
+      const key = d.toISOString().slice(0, 10);
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+  
+      // Score info
+      if (data[key]) {
+        cell.classList.add("played");
+        cell.textContent = data[key];
+        cell.title = `${key}: ${data[key]} points`;
+      } else {
+        cell.classList.add("missed");
+        cell.title = `${key}: no play`;
+      }
+  
+      // Highlight today
+      if (key === today.toISOString().slice(0, 10)) {
+        cell.classList.add("today");
+      }
+  
+      grid.appendChild(cell);
+    });
+  }
+  

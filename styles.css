@@ -20,7 +20,7 @@ body {
 }
 
 #stats-modal {
-    display: none;  
+    display: none;
 }
 
 #daily-end-modal {
@@ -44,7 +44,7 @@ body {
 
 .modal-background {
     position: fixed;
-    background-color: rgba(0,0,0, 0.55);
+    background-color: rgba(0, 0, 0, 0.55);
     width: 100%;
     height: 100vh;
     z-index: 4;
@@ -219,7 +219,7 @@ button.disabled {
 
 .type-4 {
     background-color: #86f;
-} 
+}
 
 .locked {
     border-color: red;
@@ -250,7 +250,8 @@ button.disabled {
     margin: 1em auto;
 }
 
-.scorecard-category, .stat-category {
+.scorecard-category,
+.stat-category {
     box-sizing: border-box;
     display: flex;
     border: 6px solid black;
@@ -272,7 +273,9 @@ button.disabled {
     padding: 16px;
 }
 
-.scorebox, .statbox, #totalbox {
+.scorebox,
+.statbox,
+#totalbox {
     min-width: 50px;
     width: fit-content;
     background-color: white;
@@ -282,7 +285,8 @@ button.disabled {
     padding: 0 4px;
 }
 
-#totalbox, .statbox {
+#totalbox,
+.statbox {
     font-size: larger;
 }
 
@@ -302,7 +306,8 @@ button.disabled {
     -webkit-user-select: none;
 }
 
-.scorecard-label, .stat-label {
+.scorecard-label,
+.stat-label {
     flex-grow: 1;
     background-color: #ddd;
     border-right: 6px solid black;
@@ -322,7 +327,8 @@ button.disabled {
     width: unset;
 }
 
-button, #total-category {
+button,
+#total-category {
     min-width: 160px;
     flex-basis: 160px;
 }
@@ -338,6 +344,55 @@ button, #total-category {
     margin-bottom: 8px;
     margin-top: 23vh;
 }
+
+#calendar-label {
+    text-align: center;
+    font-size: 24px;
+}
+
+#calendar-container {
+    margin-top: 1em;
+    text-align: center;
+    width: 100%;
+}
+
+.calendar-header,
+#calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.calendar-header div {
+    font-weight: bold;
+}
+
+#calendar-grid .cell {
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    user-select: none;
+}
+
+#calendar-grid .played {
+    background: #86f;
+    color: white;
+}
+
+#calendar-grid .missed {
+    background: #f5f5f5;
+    color: #aaa;
+}
+
+#calendar-grid .today {
+    border: 6px solid #50f;
+}
+
 
 @media only screen and (max-width: 780px) {
     .container {
@@ -357,21 +412,22 @@ button, #total-category {
     .type-0 {
         background-color: white;
     }
+
     .type-1 {
         background-color: hsl(0, 100%, 75%);
     }
-    
+
     .type-2 {
         background-color: hsl(60, 100%, 75%);
     }
-    
+
     .type-3 {
         background-color: hsl(107, 100%, 85%);
     }
-    
+
     .type-4 {
         background-color: hsl(253, 100%, 85%);
-    } 
+    }
 
     #die-container {
         height: 125px;
@@ -404,6 +460,7 @@ button, #total-category {
         color: white;
     }
 }
+
 @media only screen and (max-width: 600px) {
     #message-box {
         display: none;
@@ -439,8 +496,8 @@ button, #total-category {
         width: 60px;
         padding: 0px;
         border-width: 3px;
-        border-color: rgba(0,0,0,0);
-        background-color: rgba(0,0,0,0);
+        border-color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0);
     }
 
     .locked {
@@ -461,16 +518,19 @@ button, #total-category {
         height: 95%;
         margin-top: 2.5%;
         margin-left: 2.5%;
-        background-color: rgba(0,0,0,0);
+        background-color: rgba(0, 0, 0, 0);
     }
 
-    button, #total-category, .stat-category {
+    button,
+    #total-category,
+    .stat-category {
         border-width: 3px;
         height: 42px;
         line-height: 36px;
     }
 
-    button, #total-category {
+    button,
+    #total-category {
         font-size: 24px;
     }
 
@@ -487,7 +547,8 @@ button, #total-category {
         width: 100%;
     }
 
-    .scorecard-label, .stat-label {
+    .scorecard-label,
+    .stat-label {
         border-width: 3px;
         border-radius: 5px 0 0 5px;
         font-size: normal;
@@ -500,7 +561,8 @@ button, #total-category {
     }
 
     .scorebox,
-    #totalbox, .statbox {
+    #totalbox,
+    .statbox {
         border-radius: 0 5px 5px 0;
         min-width: 36px;
     }
@@ -509,11 +571,19 @@ button, #total-category {
         display: none;
     }
 
+    #calendar-grid .today {
+        border: none;
+        outline: 3px solid #50f;
+    }
 }
 
 @media only screen and (max-height: 650px) {
     .modal {
         margin-top: 24px;
+    }
+
+    #calendar-container {
+        display: none;
     }
 
 }
