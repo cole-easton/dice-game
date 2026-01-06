@@ -1,5 +1,7 @@
 import * as CardGenerator from "./cardGenerator.js";
 import * as GemManager from './gems.js';
+import * as DateUtils from './dates.js';
+import * as Streaks from './streaks.js';
 
 run(new URLSearchParams(window.location.search).get("daily") === "true");
 
@@ -32,30 +34,28 @@ export function run(isDaily) {
     const key = isDaily ? "eqy-daily-scores" : "eqy-scores";
     const scores = JSON.parse(localStorage.getItem(key)) ?? (isDaily ? {} : []);
 
-    const date = new Date().toJSON().slice(0, 10);
+    const dailyGameOverUI = _ => {
+        const streaks = Streaks.getStreaks(Object.keys(scores));
 
-    const dailyGameOverUI = _ => { 
-        const streaks = getStreaks(Object.keys(scores));
-    
         dailyModal.style.display = "block";
         nonModal.classList.add("disabled");
         dailyTotalBox.textContent = total;
-    
+
         const streakBox = document.getElementById("daily-streak");
         if (streakBox) streakBox.textContent = streaks.current;
-    
-        renderCalendar(scores, date);
-    
+
+        renderCalendar(scores, DateUtils.todayYMD);
+
         dailyShareButton.onclick = () => {
             navigator.clipboard.writeText(
                 `I earned ${total} points on today's Daily Mine on Easton Quarry Yields!\nCan you beat me?\nTry now at ${window.location.href}`
             ).then(_ => console.log("success"), _ => console.log("failure"));
         };
     };
-    
 
-    if (isDaily && scores[date]) {
-        total = scores[date];
+
+    if (isDaily && scores[DateUtils.todayYMD]) {
+        total = scores[DateUtils.todayYMD];
         dailyGameOverUI();
     }
 
@@ -142,7 +142,7 @@ export function run(isDaily) {
     }
 
     const rollAndUpdate = _ => {
-        if (rollButton.classList.contains("disabled")) return; 
+        if (rollButton.classList.contains("disabled")) return;
         rollDice();
         const roll = getCurrentRoll();
         displayRoll(roll);
@@ -195,7 +195,7 @@ export function run(isDaily) {
                 messageBox.textContent = `Congratulations! You've completed the game with a final score of ${total} points.`;
 
                 if (isDaily) {
-                    scores[date] = total;
+                    scores[DateUtils.todayYMD] = total;
                     localStorage.setItem(key, JSON.stringify(scores));
                     dailyGameOverUI();
                 }
@@ -264,58 +264,43 @@ export function run(isDaily) {
     };
 }
 
-function getStreaks(dates) {
-    if (dates.length === 0) return { current: 0, longest: 0 };
-    const sorted = dates.map(d => new Date(d)).sort((a, b) => a - b);
-
-    let current = 1, longest = 1;
-    for (let i = 1; i < sorted.length; i++) {
-        const diff = (sorted[i] - sorted[i - 1]) / (1000 * 60 * 60 * 24);
-        if (diff === 1) {
-            current++;
-            longest = Math.max(longest, current);
-        } else {
-            current = 1;
-        }
-    }
-    return { current, longest };
-}
-
 function renderCalendar(data) {
-    const grid = document.getElementById("calendar-grid");
-    grid.innerHTML = "";
-  
+    const row = document.getElementById("recent-scores");
+    row.innerHTML = "";
+    const header = document.querySelector(".recent-scores-header");
+
     const today = new Date();
     const days = [];
-  
-    // Collect last 14 days (including today)
-    for (let i = 13; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(today.getDate() - i);
-      days.push(d);
+
+    for (let i = 4; i >= 0; i--) {
+        const d = new Date(today);
+        d.setDate(today.getDate() - i);
+        days.push(d);
     }
-  
+
     days.forEach(d => {
-      const key = d.toISOString().slice(0, 10);
-      const cell = document.createElement("div");
-      cell.classList.add("cell");
-  
-      // Score info
-      if (data[key]) {
-        cell.classList.add("played");
-        cell.textContent = data[key];
-        cell.title = `${key}: ${data[key]} points`;
-      } else {
-        cell.classList.add("missed");
-        cell.title = `${key}: no play`;
-      }
-  
-      // Highlight today
-      if (key === today.toISOString().slice(0, 10)) {
-        cell.classList.add("today");
-      }
-  
-      grid.appendChild(cell);
+        const key = DateUtils.toLocalYMD(d);
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        const label = document.createElement("div");
+        label.textContent = String(d.getMonth() + 1).padStart(2, "0") + "/" + String(d.getDate()).padStart(2, "0");
+
+        // Score info
+        if (data[key]) {
+            cell.classList.add("played");
+            cell.textContent = data[key];
+            cell.title = `${key}: ${data[key]} points`;
+        } else {
+            cell.classList.add("missed");
+            cell.title = `${key}: no play`;
+        }
+
+        // Highlight today
+        if (key === DateUtils.todayYMD) {
+            cell.classList.add("today");
+        }
+
+        row.appendChild(cell);
+        header.appendChild(label);
     });
-  }
-  
+}

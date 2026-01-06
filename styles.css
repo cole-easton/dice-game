@@ -36,8 +36,8 @@ body {
     border: 6px solid black;
     box-shadow: 0 0 8px #000;
     left: 50%;
-    transform: translateX(-50%);
-    margin-top: 9vh;
+    top: 50%;
+    transform: translate(-50%, -51%);
     z-index: 6;
     padding-bottom: 16px;
 }
@@ -345,31 +345,31 @@ button,
     margin-top: 23vh;
 }
 
-#calendar-label {
+#recent-scores-label {
     text-align: center;
     font-size: 24px;
 }
 
-#calendar-container {
+#recent-scores-container {
     margin-top: 1em;
     text-align: center;
     width: 100%;
 }
 
-.calendar-header,
-#calendar-grid {
+.recent-scores-header,
+#recent-scores {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.5rem;
-    max-width: 420px;
+    max-width: 310px;
     margin: 0 auto;
 }
 
-.calendar-header div {
+.recent-scores-header div {
     font-weight: bold;
 }
 
-#calendar-grid .cell {
+:is(#recent-scores, #calendar-grid)  .cell{
     aspect-ratio: 1 / 1;
     border-radius: 8px;
     display: flex;
@@ -379,17 +379,17 @@ button,
     user-select: none;
 }
 
-#calendar-grid .played {
+:is(#recent-scores, #calendar-grid)  .played  {
     background: #86f;
     color: white;
 }
 
-#calendar-grid .missed {
+:is(#recent-scores, #calendar-grid) .missed {
     background: #f5f5f5;
     color: #aaa;
 }
 
-#calendar-grid .today {
+:is(#recent-scores, #calendar-grid)  .today {
     border: 6px solid #50f;
 }
 
@@ -571,19 +571,14 @@ button,
         display: none;
     }
 
-    #calendar-grid .today {
+    :is(#recent-scores, #calendar-grid) .today {
         border: none;
         outline: 3px solid #50f;
     }
 }
 
-@media only screen and (max-height: 650px) {
-    .modal {
-        margin-top: 24px;
-    }
-
-    #calendar-container {
+@media only screen and (max-height: 685px) {
+    #recent-scores-container {
         display: none;
     }
-
 }
