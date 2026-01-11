@@ -163,6 +163,8 @@ export function run(isDaily) {
     }
 
     window.onkeydown = e => {
+        if (e.repeat) return;
+        
         if (e.key >= "1" && e.key <= "5") {
             const index = parseInt(e.key, 10) - 1;
             toggleDie(index);
