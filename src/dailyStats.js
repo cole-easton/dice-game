@@ -1,4 +1,4 @@
-import * as DateUtils from "./dates.js";
+import * as DateUtils from "./utils/dates.js";
 import * as Streaks from './streaks.js';
 
 const data = JSON.parse(localStorage.getItem("eqy-daily-scores")) ?? {};

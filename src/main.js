@@ -1,6 +1,6 @@
-import * as CardGenerator from "./cardGenerator.js";
-import * as GemManager from './gems.js';
-import * as DateUtils from './dates.js';
+import * as CardGenerator from "./game/cardGenerator.js";
+import * as GemManager from './game/gems.js';
+import * as DateUtils from './utils/dates.js';
 import * as Streaks from './streaks.js';
 
 run(new URLSearchParams(window.location.search).get("daily") === "true");

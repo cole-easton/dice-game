@@ -1,4 +1,4 @@
-import * as DateUtils from './dates.js';
+import * as DateUtils from './utils/dates.js';
 
 /**
  * Calculates the current and longest streaks in input dates
